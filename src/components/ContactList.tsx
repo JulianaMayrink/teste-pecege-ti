@@ -64,7 +64,11 @@ const ContactList = () => {
   useEffect(() => {
     getContatos();
   }, []);
-  console.log('contatos', contatos);
+
+  const deleteContact = (id: number) => {
+    const updatedArray = contatos.filter((_, index) => index !== id);
+    setContatos(updatedArray);
+  };
 
   return (
     <Container>
@@ -72,6 +76,8 @@ const ContactList = () => {
         <Title>Nome</Title>
         <Title>Email</Title>
         <Title>Telefone</Title>
+        <Title></Title>
+        <Title></Title>
       </TableHeader>
       <TableBody>
         {contatos.map(({ name, email, phone }, id) => (
@@ -79,6 +85,12 @@ const ContactList = () => {
             <Column align="center">{name} </Column>
             <Column align="center">{email} </Column>
             <Column align="center">{phone} </Column>
+            <Column align="center">
+              <button type="button" onClick={() => deleteContact(id)}>
+                Excluir
+              </button>
+            </Column>
+            <Column align="center"></Column>
           </Row>
         ))}
       </TableBody>
