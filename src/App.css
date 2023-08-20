@@ -1,8 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 #root {
-  max-width: 1280px;
   text-align: center;
   height: 100%;
   color: black;
+  width: 100%;
 }
 
 .logo {
