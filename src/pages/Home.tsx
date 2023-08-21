@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import ContactListComponent from '../components/ContactListComponent';
 import AddButtonComponent from '../components/AddButton';
 import styled from 'styled-components';
+import SearchBarComponent from '../components/search-bar/SearchBar';
 
 const Home = () => {
   const [contactList, setContactList] = useState<Array<ContactType>>([]);
@@ -41,9 +42,18 @@ const Home = () => {
     getContatos();
   }, []);
 
+  const [order, setOrder] = useState('');
+
   return (
     <Container>
       <Wrapper>
+        <SearchBarComponent
+          type="text"
+          placeholder="Pesquisar"
+          onChange={(e) => {
+            setOrder(e.target.value);
+          }}
+        />
         <AddButtonComponent
           setContactList={setContactList}
           contactList={contactList}
