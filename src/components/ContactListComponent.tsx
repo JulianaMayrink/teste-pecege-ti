@@ -22,7 +22,8 @@ const ContactListComponent = ({
 
   const { openModal } = useModal();
 
-  const [order, setOrder] = useState<'asc' | 'desc'>('asc');
+  const [order, setOrder] = useState('');
+
   const setSortedField = () => {
     const orderedContactList = [...contactList].sort((a, b) => {
       if (order === 'asc') {
@@ -37,7 +38,14 @@ const ContactListComponent = ({
 
   return (
     <>
-      <Container id="#myTable2 tbody">
+      <input
+        type="text"
+        placeholder="Pesquisar"
+        onChange={(e) => {
+          setOrder(e.target.value);
+        }}
+      />
+      <Container>
         <TableHeader>
           <Title>
             Nome
@@ -51,34 +59,49 @@ const ContactListComponent = ({
           <Title></Title>
         </TableHeader>
         <TableBody>
-          {contactList.map((contato, id) => (
-            <Row key={id}>
-              <Column align="center">{contato.name} </Column>
-              <Column align="center">{contato.email} </Column>
-              <Column align="center">{contato.phone} </Column>
-              <Column align="center">
-                <ButtonComponent
-                  onClick={() => {
-                    openModal(
-                      <ContactForm
-                        contact={contactList[id]}
-                        onEdit={(contact: ContactType) =>
-                          editContactHandle(contact, id)
-                        }
-                      ></ContactForm>,
-                    );
-                  }}
-                >
-                  <p>Editar</p>
-                </ButtonComponent>
-              </Column>
-              <Column align="center">
-                <ButtonComponent onClick={() => deleteContact(id)}>
-                  <p>Excluir</p>
-                </ButtonComponent>
-              </Column>
-            </Row>
-          ))}
+          {contactList
+            .filter((contato) => {
+              if (order === '') {
+                return contato;
+              } else if (
+                contato.name
+                  .toLowerCase()
+                  .includes(order.toLocaleLowerCase()) ||
+                contato.username
+                  .toLowerCase()
+                  .includes(order.toLocaleLowerCase())
+              ) {
+                return contato;
+              }
+            })
+            .map((contato, id) => (
+              <Row key={id}>
+                <Column align="center">{contato.name} </Column>
+                <Column align="center">{contato.email} </Column>
+                <Column align="center">{contato.phone} </Column>
+                <Column align="center">
+                  <ButtonComponent
+                    onClick={() => {
+                      openModal(
+                        <ContactForm
+                          contact={contactList[id]}
+                          onEdit={(contact: ContactType) =>
+                            editContactHandle(contact, id)
+                          }
+                        ></ContactForm>,
+                      );
+                    }}
+                  >
+                    <p>Editar</p>
+                  </ButtonComponent>
+                </Column>
+                <Column align="center">
+                  <ButtonComponent onClick={() => deleteContact(id)}>
+                    <p>Excluir</p>
+                  </ButtonComponent>
+                </Column>
+              </Row>
+            ))}
         </TableBody>
       </Container>
     </>
