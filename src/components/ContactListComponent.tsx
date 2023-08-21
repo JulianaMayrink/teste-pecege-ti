@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import ButtonComponent from './Button';
 import ContactForm from './ContactForm';
 import { useModal } from './modal/Modal.Provider';
+import { useState } from 'react';
 
 const ContactListComponent = ({
   contactList,
@@ -21,8 +22,17 @@ const ContactListComponent = ({
 
   const { openModal } = useModal();
 
+  const [order, setOrder] = useState<'asc' | 'desc'>('asc');
   const setSortedField = () => {
-    setContactList();
+    const orderedContactList = [...contactList].sort((a, b) => {
+      if (order === 'asc') {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
+    setContactList(orderedContactList);
+    setOrder(order === 'asc' ? 'desc' : 'asc');
   };
 
   return (
@@ -31,9 +41,9 @@ const ContactListComponent = ({
         <TableHeader>
           <Title>
             Nome
-            <button
-            // onClick={() => setSortedField('name')}
-            ></button>
+            <ButtonComponent onClick={setSortedField}>
+              <p>Ordenar</p>
+            </ButtonComponent>
           </Title>
           <Title>Email</Title>
           <Title>Telefone</Title>
