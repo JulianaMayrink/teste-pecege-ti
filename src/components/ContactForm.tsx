@@ -61,7 +61,7 @@ export default function ContactForm({ contact, onEdit }: ContactFormType) {
           closeModal();
         }}
       >
-        Voltar
+        Cancelar
       </Button>
       <Button>Salvar</Button>
     </Wrapper>
