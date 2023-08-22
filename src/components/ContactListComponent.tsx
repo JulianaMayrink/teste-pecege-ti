@@ -59,49 +59,34 @@ const ContactListComponent = ({
           <Title></Title>
         </TableHeader>
         <TableBody>
-          {contactList
-            .filter((contato) => {
-              if (order === '') {
-                return contato;
-              } else if (
-                contato.name
-                  .toLowerCase()
-                  .includes(order.toLocaleLowerCase()) ||
-                contato.username
-                  .toLowerCase()
-                  .includes(order.toLocaleLowerCase())
-              ) {
-                return contato;
-              }
-            })
-            .map((contato, id) => (
-              <Row key={id}>
-                <Column align="center">{contato.name} </Column>
-                <Column align="center">{contato.email} </Column>
-                <Column align="center">{contato.phone} </Column>
-                <Column align="center">
-                  <ButtonComponent
-                    onClick={() => {
-                      openModal(
-                        <ContactForm
-                          contact={contactList[id]}
-                          onEdit={(contact: ContactType) =>
-                            editContactHandle(contact, id)
-                          }
-                        ></ContactForm>,
-                      );
-                    }}
-                  >
-                    <p>Editar</p>
-                  </ButtonComponent>
-                </Column>
-                <Column align="center">
-                  <ButtonComponent onClick={() => deleteContact(id)}>
-                    <p>Excluir</p>
-                  </ButtonComponent>
-                </Column>
-              </Row>
-            ))}
+          {contactList.map((contato, id) => (
+            <Row key={id}>
+              <Column align="center">{contato.name} </Column>
+              <Column align="center">{contato.email} </Column>
+              <Column align="center">{contato.phone} </Column>
+              <Column align="center">
+                <ButtonComponent
+                  onClick={() => {
+                    openModal(
+                      <ContactForm
+                        contact={contactList[id]}
+                        onEdit={(contact: ContactType) =>
+                          editContactHandle(contact, id)
+                        }
+                      ></ContactForm>,
+                    );
+                  }}
+                >
+                  <p>Editar</p>
+                </ButtonComponent>
+              </Column>
+              <Column align="center">
+                <ButtonComponent onClick={() => deleteContact(id)}>
+                  <p>Excluir</p>
+                </ButtonComponent>
+              </Column>
+            </Row>
+          ))}
         </TableBody>
       </Container>
     </>

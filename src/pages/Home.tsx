@@ -42,7 +42,7 @@ const Home = () => {
     getContatos();
   }, []);
 
-  const [order, setOrder] = useState('');
+  const [searchList, setSearchList] = useState<Array<ContactType>>([]);
 
   return (
     <Container>
@@ -50,19 +50,18 @@ const Home = () => {
         <SearchBarComponent
           type="text"
           placeholder="Pesquisar"
-          onChange={(e) => {
-            setOrder(e.target.value);
-          }}
+          contactList={contactList}
+          resultList={(searchFilter) => setSearchList(searchFilter)}
         />
         <AddButtonComponent
           setContactList={setContactList}
           contactList={contactList}
-        ></AddButtonComponent>
+        />
       </Wrapper>
       <ContactListComponent
         setContactList={setContactList}
-        contactList={contactList}
-      ></ContactListComponent>
+        contactList={searchList.length > 0 ? searchList : contactList}
+      />
     </Container>
   );
 };
