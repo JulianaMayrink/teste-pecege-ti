@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ContactListComponent from '../components/ContactListComponent';
 import AddButtonComponent from '../components/AddButton';
 import styled from 'styled-components';
-import SearchBarComponent from '../components/search-bar/SearchBar';
+import SearchBarComponent from '../components/SearchBar';
 
 const Home = () => {
   const [contactList, setContactList] = useState<Array<ContactType>>([]);
