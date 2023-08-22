@@ -14,82 +14,67 @@ const ContactListComponent = ({
   };
 
   const editContactHandle = (contact: ContactType, id: number) => {
-    if (id) {
-      contactList[id] = contact;
-      console.log('contact ContactList', contact);
-    }
+    if (id) contactList[id] = contact;
   };
 
   const { openModal } = useModal();
 
-  const [order, setOrder] = useState('');
+  const [orderedContact, setOrderedContact] = useState('');
 
   const setSortedField = () => {
     const orderedContactList = [...contactList].sort((a, b) => {
-      if (order === 'asc') {
-        return a.name.localeCompare(b.name);
-      } else {
-        return b.name.localeCompare(a.name);
-      }
+      if (orderedContact === 'asc') return a.name.localeCompare(b.name);
+      else return b.name.localeCompare(a.name);
     });
     setContactList(orderedContactList);
-    setOrder(order === 'asc' ? 'desc' : 'asc');
+    setOrderedContact(orderedContact === 'asc' ? 'desc' : 'asc');
   };
 
   return (
-    <>
-      <input
-        type="text"
-        placeholder="Pesquisar"
-        onChange={(e) => {
-          setOrder(e.target.value);
-        }}
-      />
-      <Container>
-        <TableHeader>
-          <Title>
-            Nome
-            <ButtonComponent onClick={setSortedField}>
-              <p>Ordenar</p>
-            </ButtonComponent>
-          </Title>
-          <Title>Email</Title>
-          <Title>Telefone</Title>
-          <Title></Title>
-          <Title></Title>
-        </TableHeader>
-        <TableBody>
-          {contactList.map((contato, id) => (
-            <Row key={id}>
-              <Column align="center">{contato.name} </Column>
-              <Column align="center">{contato.email} </Column>
-              <Column align="center">{contato.phone} </Column>
-              <Column align="center">
-                <ButtonComponent
-                  onClick={() => {
-                    openModal(
-                      <ContactForm
-                        contact={contactList[id]}
-                        onEdit={(contact: ContactType) =>
-                          editContactHandle(contact, id)
-                        }
-                      ></ContactForm>,
-                    );
-                  }}
-                >
-                  <p>Editar</p>
-                </ButtonComponent>
-              </Column>
-              <Column align="center">
-                <ButtonComponent onClick={() => deleteContact(id)}>
-                  <p>Excluir</p>
-                </ButtonComponent>
-              </Column>
-            </Row>
-          ))}
-        </TableBody>
-      </Container>
-    </>
+    <Container>
+      <TableHeader>
+        <Title>
+          Nome
+          <ButtonComponent onClick={setSortedField}>
+            <p>Ordenar</p>
+          </ButtonComponent>
+        </Title>
+        <Title>Email</Title>
+        <Title>Telefone</Title>
+        <Title></Title>
+        <Title></Title>
+      </TableHeader>
+      <TableBody>
+        {contactList.map((contato, id) => (
+          <Row key={id}>
+            <Column align="center">{contato.name} </Column>
+            <Column align="center">{contato.email} </Column>
+            <Column align="center">{contato.phone} </Column>
+            <Column align="center">
+              <ButtonComponent
+                onClick={() => {
+                  openModal(
+                    <ContactForm
+                      contact={contactList[id]}
+                      onEdit={(contact: ContactType) =>
+                        editContactHandle(contact, id)
+                      }
+                    ></ContactForm>,
+                  );
+                }}
+              >
+                <p>Editar</p>
+              </ButtonComponent>
+            </Column>
+            <Column align="center">
+              <ButtonComponent onClick={() => deleteContact(id)}>
+                <p>Excluir</p>
+              </ButtonComponent>
+            </Column>
+          </Row>
+        ))}
+      </TableBody>
+    </Container>
   );
 };
 
