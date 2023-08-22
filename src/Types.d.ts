@@ -41,5 +41,6 @@ type ContactListComponentType = {
 type SearchBarComponentType = {
   type: string;
   placeholder: string;
-  onChange: (e: unknown) => void;
+  contactList: Array<ContactType>;
+  resultList: any;
 };

@@ -9,11 +9,6 @@ const App = () => {
   return (
     <Container>
       <Header />
-      <SearchBarAndButtonContainer>
-        <div>Barra de pesquisa</div>
-        {/* <ButtonComponent onClick={}>Adicionar</ButtonComponent> */}
-      </SearchBarAndButtonContainer>
-
       <ModalProvider>
         <Home />
       </ModalProvider>
@@ -28,15 +23,3 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
 `;
-
-const SearchBarAndButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0rem 2rem;
-`;
-
-// const Button = styled.button`
-//   background-color: white;
-//   border: 1px solid #000;
-// `;
