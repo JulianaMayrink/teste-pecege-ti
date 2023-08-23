@@ -69,7 +69,15 @@ const Home = () => {
 export default Home;
 
 const Container = styled.div`
-  padding: 2rem;
+  padding: 2rem 4rem;
+
+  @media (max-width: 1023px) {
+    padding: 2rem;
+  }
+
+  @media (max-width: 767px) {
+    padding: 1rem;
+  }
 `;
 
 const Wrapper = styled.div`

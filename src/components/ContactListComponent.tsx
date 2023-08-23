@@ -107,11 +107,11 @@ const Title = styled.th`
   font-style: normal;
   font-weight: 700;
   color: #000;
-  width: 27%;
+  width: 30%;
 `;
 
 const TitleButton = styled.th`
-  width: 19%;
+  width: 10%;
 `;
 
 const TableBody = styled.tbody``;

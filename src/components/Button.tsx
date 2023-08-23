@@ -35,17 +35,23 @@ const DefaultButton = styled.button<{
   font-weight: 500;
   text-align: center;
   color: ${({ color }) => (color === 'primary' ? '#FFF' : '#f20c3a')};
-  border-color: ${({ color }) => (color === 'primary' ? '#FFF' : '#f20c3a')};
+  border-color: #f20c3a;
   background-color: ${({ color }) => `var(--${color})`};
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 130px;
+  width: 120px;
   height: 45px;
   position: relative;
   overflow: hidden;
   transition-duration: 0.3s;
+
+  div {
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+  }
 
   img {
     transition-duration: 0.3s;
@@ -60,6 +66,10 @@ const DefaultButton = styled.button<{
     right: 0%;
     transition-duration: 0.3s;
   }
+  &:hover {
+    transform: scale(1.05);
+    border-color: #f20c3a;
+  }
 `;
 
 const TransitiontButton = styled(DefaultButton)`
@@ -71,6 +81,8 @@ const TransitiontButton = styled(DefaultButton)`
 
   div {
     display: flex;
+    width: 100%;
+    gap: 0.5rem;
     &:hover {
     }
   }
@@ -88,7 +100,7 @@ const TransitiontButton = styled(DefaultButton)`
   &:hover {
     width: 100px;
     transition-duration: 0.3s;
-    border-color: ${({ color }) => (color === 'primary' ? '#FFF' : '#f20c3a')};
+    border-color: #f20c3a;
     transition: 0.3s;
     display: flex;
     align-items: center;
