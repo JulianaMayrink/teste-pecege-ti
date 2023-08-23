@@ -81,8 +81,9 @@ const Wrapper = styled.form`
   border-radius: 0.5rem;
   box-shadow: 0px 10px 20px rgba(54, 78, 126, 0.25);
   display: grid;
-  grid-template-columns: 60% auto;
-  gap: 0.5rem;
+  grid-template-columns: 50% auto;
+  gap: 1.5rem;
+  justify-items: center;
   width: 60%;
   max-width: 50rem;
 
@@ -90,6 +91,7 @@ const Wrapper = styled.form`
     display: flex;
     flex-direction: column;
     align-items: start;
+    width: 100%;
   }
 
   input {
@@ -99,5 +101,21 @@ const Wrapper = styled.form`
     box-shadow: 1px 1px 6px #0000001c;
     font-size: 0.8rem;
     width: 100%;
+    border: none;
+    cursor: text;
+    padding: 8px 25px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #d9d9d9;
+    color: #000;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+    height: 2.5rem;
+
+    &:focus {
+      border: none;
+      outline: none;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      border: 1px solid #d9d9d9;
+    }
   }
 `;
