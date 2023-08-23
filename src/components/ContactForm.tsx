@@ -56,7 +56,8 @@ export default function ContactForm({ contact, onEdit }: ContactFormType) {
           {labelNames[id]}
           {labelNames[id] === 'Nome*' ||
           labelNames[id] === 'Nome de Usuário*' ||
-          labelNames[id] === 'Email*' ? (
+          labelNames[id] === 'Email*' ||
+          labelNames[id] === 'Telefone*' ? (
             <input type="text" {...register(inputName)} required />
           ) : (
             <input type="text" {...register(inputName)} />
