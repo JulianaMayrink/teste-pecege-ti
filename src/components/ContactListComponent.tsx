@@ -3,6 +3,8 @@ import ButtonComponent from './Button';
 import ContactForm from './ContactForm';
 import { useModal } from './modal/Modal.Provider';
 import { useState } from 'react';
+import edit from '../assets/edit.svg';
+import trash from '../assets/trash.svg';
 
 const ContactListComponent = ({
   contactList,
@@ -34,10 +36,7 @@ const ContactListComponent = ({
     <Container>
       <TableHeader>
         <Title>
-          Nome
-          <ButtonComponent onClick={setSortedField}>
-            <p>Ordenar</p>
-          </ButtonComponent>
+          <p onClick={setSortedField}>Nome</p>
         </Title>
         <Title>Email</Title>
         <Title>Telefone</Title>
@@ -52,6 +51,7 @@ const ContactListComponent = ({
             <Column align="center">{contato.phone} </Column>
             <Column align="center">
               <ButtonComponent
+                color="secondary"
                 onClick={() => {
                   openModal(
                     <ContactForm
@@ -63,11 +63,13 @@ const ContactListComponent = ({
                   );
                 }}
               >
+                <img src={edit} />
                 <p>Editar</p>
               </ButtonComponent>
             </Column>
             <Column align="center">
               <ButtonComponent onClick={() => deleteContact(id)}>
+                <img src={trash} />
                 <p>Excluir</p>
               </ButtonComponent>
             </Column>
