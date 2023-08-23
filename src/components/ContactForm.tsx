@@ -30,11 +30,11 @@ export default function ContactForm({ contact, onEdit }: ContactFormType) {
     'Nome*',
     'Nome de Usuário*',
     'Email*',
-    'Rua*',
-    'Número*',
-    'Cidade*',
+    'Rua',
+    'Número',
+    'Cidade',
     'CEP*',
-    'Telefone*',
+    'Telefone',
     'Site',
     'Empresa',
     'Frase de Efeito',
@@ -53,7 +53,13 @@ export default function ContactForm({ contact, onEdit }: ContactFormType) {
       {inputNames.map((inputName, id) => (
         <label key={id}>
           {labelNames[id]}
-          <input type="text" {...register(inputName)}></input>
+          {labelNames[id] === 'Nome*' ||
+          labelNames[id] === 'Nome de Usuário*' ||
+          labelNames[id] === 'Email*' ? (
+            <input type="text" {...register(inputName)} required />
+          ) : (
+            <input type="text" {...register(inputName)} />
+          )}
         </label>
       ))}
       <ButtonComponent
