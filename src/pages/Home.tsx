@@ -73,8 +73,9 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2rem;
+  grid-template-columns: 30% auto;
 `;

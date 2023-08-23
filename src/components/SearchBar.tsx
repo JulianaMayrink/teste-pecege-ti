@@ -25,16 +25,26 @@ const SearchBarComponent = ({
       type={type}
       placeholder={placeholder}
       onChange={(e) => setSearchTerm(e.target.value)}
-    ></SearchBar>
+    />
   );
 };
 export default SearchBarComponent;
 
 const SearchBar = styled.input`
   border: none;
-  cursor: pointer;
+  cursor: text;
   padding: 8px 25px;
   border-radius: 8px;
   background-color: white;
-  border: 1px solid #000;
+  border: 1px solid #d9d9d9;
+  color: #000;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+  height: 2.5rem;
+
+  &:focus {
+    border: none;
+    outline: none;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid #d9d9d9;
+  }
 `;
