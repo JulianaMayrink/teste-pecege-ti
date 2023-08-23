@@ -5,38 +5,37 @@ import { useModal } from './modal/Modal.Provider';
 import { useState } from 'react';
 import edit from '../assets/edit.svg';
 import trash from '../assets/trash.svg';
+import arrow from '../assets/arrow.svg';
+const ContactTable = ({ contactList, setContactList }: ContactTableType) => {
+  const { openModal } = useModal();
 
-const ContactListComponent = ({
-  contactList,
-  setContactList,
-}: ContactListComponentType) => {
-  const deleteContact = (id: number) => {
-    const updatedArray = contactList.filter((_, index) => index !== id);
-    setContactList(updatedArray);
+  const [sortedContact, setSortedContact] = useState('');
+
+  const setSortedField = () => {
+    const sortedContactList = [...contactList].sort((a, b) => {
+      if (sortedContact === 'asc') return a.name.localeCompare(b.name);
+      else return b.name.localeCompare(a.name);
+    });
+    setContactList(sortedContactList);
+    setSortedContact(sortedContact === 'asc' ? 'desc' : 'asc');
   };
 
   const editContactHandle = (contact: ContactType, id: number) => {
     if (id) contactList[id] = contact;
   };
 
-  const { openModal } = useModal();
-
-  const [orderedContact, setOrderedContact] = useState('');
-
-  const setSortedField = () => {
-    const orderedContactList = [...contactList].sort((a, b) => {
-      if (orderedContact === 'asc') return a.name.localeCompare(b.name);
-      else return b.name.localeCompare(a.name);
-    });
-    setContactList(orderedContactList);
-    setOrderedContact(orderedContact === 'asc' ? 'desc' : 'asc');
+  const deleteContact = (id: number) => {
+    const updatedArray = contactList.filter((_, index) => index !== id);
+    setContactList(updatedArray);
   };
 
   return (
     <Container>
       <TableHeader>
         <Title>
-          <p onClick={setSortedField}>Nome</p>
+          <ColumnName>
+            <p>Nome</p> <Image onClick={setSortedField} src={arrow} />
+          </ColumnName>
         </Title>
         <Title>Email</Title>
         <Title>Telefone</Title>
@@ -91,13 +90,13 @@ const ContactListComponent = ({
   );
 };
 
-export default ContactListComponent;
+export default ContactTable;
 
 const Container = styled.table`
   background-color: #ffffff;
   width: 100%;
   border-collapse: collapse;
-  th,
+
   td {
     padding: 1rem 2rem;
   }
@@ -120,6 +119,12 @@ const Title = styled.th`
   }
 `;
 
+const ColumnName = styled.th`
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+`;
+
 const TitleButton = styled.th`
   width: 19%;
 `;
@@ -128,7 +133,12 @@ const TableBody = styled.tbody``;
 
 const Row = styled.tr``;
 
-const Image = styled.img``;
+const Image = styled.img`
+  width: 15px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const Column = styled.td`
   text-align: center;
@@ -156,6 +166,7 @@ const ButtonColumn = styled(Column)`
   display: flex;
   justify-content: space-around;
   gap: 1rem;
+
   @media (max-width: 767px) {
     display: flex;
     justify-content: center;

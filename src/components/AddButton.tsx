@@ -6,7 +6,7 @@ import addUser from '../assets/addUser.svg';
 const AddButtonComponent = ({
   contactList,
   setContactList,
-}: ContactListComponentType) => {
+}: ContactTableType) => {
   const { openModal } = useModal();
 
   const AddContact = (contact: ContactType) => {

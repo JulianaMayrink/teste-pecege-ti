@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import ContactListComponent from '../components/ContactListComponent';
 import AddButtonComponent from '../components/AddButton';
 import styled from 'styled-components';
 import SearchBarComponent from '../components/SearchBar';
+import ContactTable from '../components/ContactTable';
 
 const Home = () => {
   const [contactList, setContactList] = useState<Array<ContactType>>([]);
@@ -58,7 +58,7 @@ const Home = () => {
           contactList={contactList}
         />
       </Wrapper>
-      <ContactListComponent
+      <ContactTable
         setContactList={setContactList}
         contactList={searchList.length > 0 ? searchList : contactList}
       />

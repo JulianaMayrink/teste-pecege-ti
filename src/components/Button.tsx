@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-const ButtonComponent: React.FC<{
-  color?: 'default' | 'primary' | 'secondary' | 'danger';
-  onClick: () => void;
-  children: JSX.Element;
-  variant: 'default' | 'transition';
-}> = ({ variant = 'default', color, onClick, children }) => {
+const ButtonComponent = ({
+  variant = 'default',
+  color,
+  onClick,
+  children,
+}: ButtonComponentType) => {
   // const ButtonComponent = ({ onClick, children, color, }: ButtonComponentType) => {
 
   switch (variant) {
@@ -28,6 +28,7 @@ export default ButtonComponent;
 const DefaultButton = styled.button<{
   color: string;
 }>`
+  --secondary: #cd0931;
   --primary: #f20c3a;
   --secondary: #ffffff;
   padding: 0.5rem 0.9rem;
@@ -68,7 +69,8 @@ const DefaultButton = styled.button<{
   }
   &:hover {
     transform: scale(1.05);
-    border-color: #f20c3a;
+    border-color: #cd0931;
+    background-color: #cd0931;
   }
 `;
 
@@ -112,6 +114,7 @@ const TransitiontButton = styled(DefaultButton)`
       width: 100px;
       transition-duration: 0.3s;
       border-color: #f20c3a;
+      background-color: ${({ color }) => `var(--${color})`};
       transition: 0.3s;
       display: flex;
       align-items: center;
