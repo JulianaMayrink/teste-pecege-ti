@@ -40,8 +40,7 @@ const ContactListComponent = ({
         </Title>
         <Title>Email</Title>
         <Title>Telefone</Title>
-        <Title></Title>
-        <Title></Title>
+        <TitleButton></TitleButton>
       </TableHeader>
       <TableBody>
         {contactList.map((contato, id) => (
@@ -51,6 +50,7 @@ const ContactListComponent = ({
             <Column align="center">{contato.phone} </Column>
             <Column align="center">
               <ButtonComponent
+                variant="transition"
                 color="secondary"
                 onClick={() => {
                   openModal(
@@ -63,14 +63,19 @@ const ContactListComponent = ({
                   );
                 }}
               >
-                <img src={edit} />
-                <p>Editar</p>
+                <div>
+                  <Image src={edit} />
+                  <p>Editar</p>
+                </div>
               </ButtonComponent>
-            </Column>
-            <Column align="center">
-              <ButtonComponent onClick={() => deleteContact(id)}>
-                <img src={trash} />
-                <p>Excluir</p>
+              <ButtonComponent
+                variant="transition"
+                onClick={() => deleteContact(id)}
+              >
+                <div>
+                  <Image src={trash} />
+                  <p>Excluir</p>
+                </div>
               </ButtonComponent>
             </Column>
           </Row>
@@ -102,11 +107,18 @@ const Title = styled.th`
   font-style: normal;
   font-weight: 700;
   color: #000;
+  width: 28%;
+`;
+
+const TitleButton = styled.th`
+  width: 16%;
 `;
 
 const TableBody = styled.tbody``;
 
 const Row = styled.tr``;
+
+const Image = styled.img``;
 
 const Column = styled.td`
   text-align: center;
