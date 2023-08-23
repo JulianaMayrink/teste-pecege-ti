@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { useModal } from './modal/Modal.Provider';
 import ButtonComponent from './Button';
+import ConfirmationComponent from './Confirmation';
 
 export default function ContactForm({ contact, onEdit }: ContactFormType) {
   const { register, handleSubmit, reset } = useForm({ defaultValues: contact });
@@ -41,13 +42,13 @@ export default function ContactForm({ contact, onEdit }: ContactFormType) {
     'BS',
   ];
 
-  const { closeModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   return (
     <Wrapper
       onSubmit={handleSubmit(async (contact) => {
         await onEdit(contact);
-        closeModal();
+        openModal(<ConfirmationComponent />);
       })}
     >
       {inputNames.map((inputName, id) => (
@@ -90,9 +91,13 @@ const Wrapper = styled.form`
   grid-template-columns: 50% auto;
   gap: 1.5rem;
   justify-items: center;
-  width: 60%;
-  max-width: 50rem;
+  width: 90%;
+  max-width: 40rem;
 
+  @media (max-width: 767px) {
+    padding: 1rem;
+    gap: 1rem;
+  }
   label {
     display: flex;
     flex-direction: column;
