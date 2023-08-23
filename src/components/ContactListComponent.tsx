@@ -45,10 +45,16 @@ const ContactListComponent = ({
       <TableBody>
         {contactList.map((contato, id) => (
           <Row key={id}>
-            <Column align="center">{contato.name} </Column>
-            <Column align="center">{contato.email} </Column>
-            <Column align="center">{contato.phone} </Column>
-            <Column align="center">
+            <Column data-cell="Nome" align="center">
+              {contato.name}
+            </Column>
+            <Column data-cell="Email" align="center">
+              {contato.email}
+            </Column>
+            <Column data-cell="Telefone" align="center">
+              {contato.phone}
+            </Column>
+            <ButtonColumn align="center">
               <ButtonComponent
                 variant="transition"
                 color="secondary"
@@ -77,7 +83,7 @@ const ContactListComponent = ({
                   <p>Excluir</p>
                 </div>
               </ButtonComponent>
-            </Column>
+            </ButtonColumn>
           </Row>
         ))}
       </TableBody>
@@ -107,11 +113,15 @@ const Title = styled.th`
   font-style: normal;
   font-weight: 700;
   color: #000;
-  width: 30%;
+  width: 27%;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const TitleButton = styled.th`
-  width: 10%;
+  width: 19%;
 `;
 
 const TableBody = styled.tbody``;
@@ -127,4 +137,29 @@ const Column = styled.td`
   font-weight: 400;
   color: #000;
   border-bottom: 1px solid #d9d9d9;
+
+  @media (max-width: 767px) {
+    display: grid;
+    grid-template-columns: 25% auto;
+    padding: 0.5rem 1rem;
+
+    &:before {
+      content: attr(data-cell);
+      font-weight: 700;
+      color: black;
+      text-transform: capitalize;
+    }
+  }
+`;
+
+const ButtonColumn = styled(Column)`
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  @media (max-width: 767px) {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding-bottom: 3rem;
+  }
 `;

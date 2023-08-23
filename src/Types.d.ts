@@ -49,5 +49,5 @@ type ButtonComponentType = {
   onClick: () => void;
   children: JSX.Element;
   color?: 'primary' | 'secondary';
-  variant: 'default' | 'transition';
+  variant?: 'default' | 'transition';
 };

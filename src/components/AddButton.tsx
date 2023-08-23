@@ -23,8 +23,10 @@ const AddButtonComponent = ({
         )
       }
     >
-      <img src={addUser} />
-      <p>Adicionar</p>
+      <div>
+        <img src={addUser} />
+        <p>Adicionar</p>
+      </div>
     </ButtonComponent>
   );
 };
