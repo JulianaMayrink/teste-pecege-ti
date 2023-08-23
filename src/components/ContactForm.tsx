@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { useModal } from './modal/Modal.Provider';
+import ButtonComponent from './Button';
 
 export default function ContactForm({ contact, onEdit }: ContactFormType) {
   const { register, handleSubmit, reset } = useForm({ defaultValues: contact });
@@ -55,15 +56,17 @@ export default function ContactForm({ contact, onEdit }: ContactFormType) {
           <input type="text" {...register(inputName)}></input>
         </label>
       ))}
-      <Button
+      <ButtonComponent
         onClick={(event) => {
           event.preventDefault();
           closeModal();
         }}
       >
-        Cancelar
-      </Button>
-      <Button>Salvar</Button>
+        <p>Cancelar</p>
+      </ButtonComponent>
+      <ButtonComponent>
+        <p>Salvar</p>
+      </ButtonComponent>
     </Wrapper>
   );
 }
@@ -97,9 +100,4 @@ const Wrapper = styled.form`
     font-size: 0.8rem;
     width: 100%;
   }
-`;
-
-const Button = styled.button`
-  background-color: white;
-  border: 1px solid #000;
 `;

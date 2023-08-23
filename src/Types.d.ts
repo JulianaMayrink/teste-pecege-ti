@@ -44,3 +44,9 @@ type SearchBarComponentType = {
   contactList: Array<ContactType>;
   resultList: any;
 };
+
+type ButtonComponentType = {
+  onClick: () => void;
+  children: JSX.Element;
+  color?: 'primary' | 'secondary';
+};
