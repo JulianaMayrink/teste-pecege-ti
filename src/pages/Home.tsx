@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import ContactListComponent from '../components/ContactListComponent';
 import AddButtonComponent from '../components/AddButton';
 import styled from 'styled-components';
 import SearchBarComponent from '../components/SearchBar';
+import ContactTable from '../components/ContactTable';
 
 const Home = () => {
   const [contactList, setContactList] = useState<Array<ContactType>>([]);
@@ -58,7 +58,7 @@ const Home = () => {
           contactList={contactList}
         />
       </Wrapper>
-      <ContactListComponent
+      <ContactTable
         setContactList={setContactList}
         contactList={searchList.length > 0 ? searchList : contactList}
       />
@@ -71,7 +71,7 @@ export default Home;
 const Container = styled.div`
   padding: 2rem 4rem;
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1280px) {
     padding: 2rem;
   }
 
@@ -85,5 +85,5 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2rem;
-  grid-template-columns: 30% auto;
+  grid-template-columns: 50% auto;
 `;

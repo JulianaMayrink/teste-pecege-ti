@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-const ButtonComponent: React.FC<{
-  color?: 'default' | 'primary' | 'secondary' | 'danger';
-  onClick: () => void;
-  children: JSX.Element;
-  variant: 'default' | 'transition';
-}> = ({ variant = 'default', color, onClick, children }) => {
+const ButtonComponent = ({
+  variant = 'default',
+  color,
+  onClick,
+  children,
+}: ButtonComponentType) => {
   // const ButtonComponent = ({ onClick, children, color, }: ButtonComponentType) => {
 
   switch (variant) {
@@ -28,9 +28,10 @@ export default ButtonComponent;
 const DefaultButton = styled.button<{
   color: string;
 }>`
+  --secondary: #cd0931;
   --primary: #f20c3a;
   --secondary: #ffffff;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.9rem;
   font-size: 14px;
   font-weight: 500;
   text-align: center;
@@ -68,49 +69,63 @@ const DefaultButton = styled.button<{
   }
   &:hover {
     transform: scale(1.05);
-    border-color: #f20c3a;
+    border-color: #cd0931;
+    background-color: #cd0931;
   }
 `;
 
 const TransitiontButton = styled(DefaultButton)`
-  cursor: pointer;
-  overflow: hidden;
-  transition-duration: 0.3s;
-  width: 45px;
-  justify-content: flex-start;
+  width: 100px;
+  gap: 1rem;
 
-  div {
-    display: flex;
-    width: 100%;
-    gap: 0.5rem;
-    &:hover {
+  @media (min-width: 1280px) {
+    cursor: pointer;
+    overflow: hidden;
+    transition-duration: 0.3s;
+    width: 45px;
+    justify-content: flex-start;
+
+    div {
+      display: flex;
+      width: 100%;
+      gap: 0.5rem;
+      &:hover {
+      }
     }
-  }
+    div {
+      display: flex;
+      width: 100%;
+      gap: 0.5rem;
+      &:hover {
+      }
+    }
 
-  img {
-    margin: 0;
-  }
+    img {
+      margin: 0;
+    }
 
-  p {
-    transition-duration: 0.3s;
-    opacity: 0;
-    padding: 0;
-  }
-
-  &:hover {
-    width: 100px;
-    transition-duration: 0.3s;
-    border-color: #f20c3a;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
     p {
-      opacity: 1;
+      transition-duration: 0.3s;
+      opacity: 0;
+      padding: 0;
     }
-  }
 
-  &:active {
-    transform: translate(2px, 2px);
+    &:hover {
+      width: 100px;
+      transition-duration: 0.3s;
+      border-color: #f20c3a;
+      background-color: ${({ color }) => `var(--${color})`};
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      p {
+        opacity: 1;
+      }
+    }
+
+    &:active {
+      transform: translate(2px, 2px);
+    }
   }
 `;

@@ -40,6 +40,7 @@ const SearchBar = styled.input`
   color: #000;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
   height: 2.5rem;
+  max-width: 370px;
 
   &:focus {
     border: none;

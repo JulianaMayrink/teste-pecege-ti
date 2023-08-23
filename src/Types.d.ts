@@ -33,7 +33,7 @@ type InputNamesType = Array<
   | 'company.bs'
 >;
 
-type ContactListComponentType = {
+type ContactTableType = {
   contactList: Array<ContactType>;
   setContactList: (newContactList: Array<ContactType>) => void;
 };
@@ -46,8 +46,8 @@ type SearchBarComponentType = {
 };
 
 type ButtonComponentType = {
-  onClick: () => void;
+  onClick?: () => void;
   children: JSX.Element;
   color?: 'primary' | 'secondary';
-  variant: 'default' | 'transition';
+  variant?: 'default' | 'transition';
 };
