@@ -10,7 +10,6 @@ interface gráfica SPA responsiva utilizando Vite + JavaScript + TypeScript e bi
 │   ├── assets
 │   ├── components
 │   │   └── modal
-│   ├── locale
 │   ├── pages
 
 ```
